@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!-- orders table -->
+    <changeSet id="1" author="suresh">
+        <createTable tableName="orders">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_date" type="timestamp"/>
+            <column name="total_amount" type="decimal(10,2)"/>
+            <column name="status" type="varchar(50)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- order_item table -->
+    <changeSet id="2" author="suresh">
+        <createTable tableName="order_item">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="order_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="int"/>
+            <column name="price" type="decimal(10,2)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- review table -->
+    <changeSet id="3" author="suresh">
+        <createTable tableName="review">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="book_id" type="UUID"/>
+            <column name="user_id" type="UUID"/>
+            <column name="rating" type="int"/>
+            <column name="comment" type="text"/>
+            <column name="review_date" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+    <!-- cart table -->
+    <changeSet id="4" author="suresh">
+        <createTable tableName="cart">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="UUID"/>
+            <column name="book_id" type="UUID"/>
+            <column name="quantity" type="int"/>
+        </createTable>
+    </changeSet>
+
+    <!-- wishlist table -->
+    <changeSet id="5" author="suresh">
+        <createTable tableName="wishlist">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="UUID"/>
+            <column name="book_id" type="UUID"/>
+            <!--<column name="addedAt" type="timestamp"/>-->
+        </createTable>
+    </changeSet>
+
+    <!-- payment table -->
+    <changeSet id="6" author="suresh">
+        <createTable tableName="payment">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="order_id" type="UUID"/>
+            <column name="amount" type="decimal(10,2)"/>
+            <column name="payment_date" type="timestamp"/>
+            <column name="payment_method" type="varchar(50)"/>
+            <column name="status" type="varchar(50)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- order_item table -->
+    <changeSet id="7" author="suresh">
+        <createTable tableName="cart_items">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="cart_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="int"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
